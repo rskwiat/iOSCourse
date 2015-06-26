@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="navigation_bars" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iuC-yk-G2Z">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Navigation App" id="ZfB-jR-uJ3">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="fg8-Vy-6Yh"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nlN-Kz-IuV"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bao-w8-pLz">
+                                <rect key="frame" x="0.0" y="512" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="Tp6-xn-exf"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="oBT-U6-6ru"/>
+                                    <barButtonItem title="Item" id="Rjv-6m-I5p"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="bao-w8-pLz" secondAttribute="trailing" constant="-16" id="5XV-iR-Hea"/>
+                            <constraint firstItem="iuC-yk-G2Z" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="V5C-ZG-3R9"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="bao-w8-pLz" secondAttribute="bottom" id="r88-Wa-ji7"/>
+                            <constraint firstItem="iuC-yk-G2Z" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="32" id="ujP-Ve-bJz"/>
+                            <constraint firstItem="bao-w8-pLz" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="yCp-3F-6Hb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iuC-yk-G2Z" secondAttribute="trailing" constant="-16" id="zal-w2-uGn"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="190" y="232"/>
+        </scene>
+    </scenes>
+</document>
