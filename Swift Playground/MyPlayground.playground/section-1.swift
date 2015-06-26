@@ -2,8 +2,23 @@
 
 import UIKit
 
+var number = 5
+var isPrime = true
 
-
-for var i = 1; i < 10; i = i + 2 {
-    println(i);
+if number == 1 {
+    isPrime = false;
 }
+
+if number != 2 && number != 1{
+    
+for var i = 2; i < number; i++ {
+    
+    if number % i == 0 {
+        isPrime = false;
+    }
+    
+}
+
+}
+
+println(isPrime)
