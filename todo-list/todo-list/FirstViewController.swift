@@ -20,7 +20,7 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         if NSUserDefaults.standardUserDefaults().objectForKey("toDoList") != nil {
-            toDoList = NSUserDefaults.standardUserDefaults().objectForKey("toDoList") as! [String]
+            toDoList = NSUserDefaults.standardUserDefaults().objectForKey("toDoList") as [String]
         }
     }
 
