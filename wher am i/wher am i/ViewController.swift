@@ -49,7 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 if let p = CLPlacemark(placemark: placemarks?[0] as CLPlacemark) {
                     var subThoroughfare:String = ""
                     p.country
-                    
+                     
                     if (p.subThoroughfare != nil) {
                         subThoroughfare = p.subThoroughfare
                     }
