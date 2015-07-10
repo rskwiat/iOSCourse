@@ -45,9 +45,6 @@ class TableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
-        
         cell.textLabel.text = places[indexPath.row]["name"]
         return cell
     }
@@ -55,7 +52,6 @@ class TableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         activePlace = indexPath.row
-        
         return indexPath
     }
     
@@ -64,6 +60,16 @@ class TableViewController: UITableViewController {
             activePlace = -1
         }
     }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete{
+            places.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath.row], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+        
+    }
+    
+
     
 
     /*
