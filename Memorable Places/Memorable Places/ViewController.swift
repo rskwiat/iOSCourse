@@ -44,6 +44,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             annotation.coordinate = coordinate
             annotation.title = places[activePlace]["name"]
+            annotation.sub
             
             self.map.addAnnotation(annotation)
             

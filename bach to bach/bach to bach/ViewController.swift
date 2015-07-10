@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     var state: Int = 1
     
     
+    
     @IBAction func playPause(sender: AnyObject) {
         
         println(sender.tag)
