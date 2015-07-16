@@ -7,95 +7,119 @@
 import UIKit
 import Parse
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ViewController: UIViewController {
     
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var signupActive = true
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        importedImage.image = image
-    }
+    @IBOutlet var userName: UITextField!
 
-    @IBAction func restore(sender: AnyObject) {
-        activityIndicator.stopAnimating()
-        //UIApplication.sharedApplication().endIgnoringInteractionEvents()
-    }
+    @IBOutlet var password: UITextField!
     
-    @IBAction func createAlert(sender: AnyObject) {
-        
-        var alert = UIAlertController(title: "Hey there", message: "Are you sure you want to use this?", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        alert.addAction(UIAlertAction(title: "ok", style: .Default, handler: { (action) -> Void in
+    @IBOutlet var signUpButton: UIButton!
+    
+    @IBOutlet var registeredText: UILabel!
+    
+    @IBOutlet var loginButton: UIButton!
+    
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    
+    func displayAlert(title: String, message: String){
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction((UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
             self.dismissViewControllerAnimated(true, completion: nil)
-        }))
-        
+        })))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    @IBAction func pause(sender: AnyObject) {
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        //UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-    }
     
-    @IBOutlet var importedImage: UIImageView!
     
-    @IBAction func importImage(sender: AnyObject) {
-        var image = UIImagePickerController()
-        image.delegate = self
-        image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary //change to camera for camera access
-        image.allowsEditing = false
+    @IBAction func logIn(sender: AnyObject) {
         
-        self.presentViewController(image, animated: true, completion: nil)
+        if signupActive == true {
+            signUpButton.setTitle("Log In", forState: UIControlState.Normal)
+            registeredText.text = "Not registered?"
+            loginButton.setTitle("Sign Up", forState: UIControlState.Normal)
+            signupActive = false
+        } else {
+            signUpButton.setTitle("Sign Up", forState: UIControlState.Normal)
+            registeredText.text = "Already registered?"
+            loginButton.setTitle("Login", forState: UIControlState.Normal)
+            signupActive = true
+        }
     }
     
-    
+    @IBAction func signUp(sender: AnyObject) {
+        
+        if userName.text == "" || password == "" {
+            
+            displayAlert("Error in form", message: "Please enter a username and password")
+
+        } else {
+            
+            activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+//            activityIndicator.backgroundColor = "
+            view.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+  
+            var errorMessage = "Please try again later"
+
+            
+            if signupActive == true {
+            
+                var user = PFUser()
+                user.username = userName.text
+                user.password = password.text
+                
+                
+                user.signUpInBackgroundWithBlock({ (success, error) -> Void in
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                    
+                    if error == nil{
+                        //sign up was successful
+                    } else {
+                        if let errorString = error.userInfo?["error"] as? String {
+                            errorMessage = errorString
+                        }
+                        
+                        self.displayAlert("Failed Signup", message: errorMessage)
+                        
+                        
+                    }
+                    
+                })
+            } else {
+                
+                PFUser.logInWithUsernameInBackground(userName.text, password: password.text, block: { (user, error) -> Void in
+                    
+                    if user != nil {
+                        //logged in
+                    } else {
+                        
+                        if let errorString = error.userInfo?["error"] as? String {
+                            errorMessage = errorString
+                        }
+                        
+                        self.displayAlert("Failed Signup", message: errorMessage)
+                    }
+                    
+                })
+                
+                
+            }
+            
+            
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //gettting images from camera / photostream
-        
-        
-        
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        /*
-        var product = PFObject(className: "Products")
-        
-        product["name"] = "Ice Cream"
-        product["description"] = "Phish Food"
-        product["price"] = "4.99"
-        
-        product.saveInBackgroundWithBlock { (success, error) -> Void in
-            if success == true{
-//                println("Sucessful")
-                
-                println("object has been saved with ID \(product.objectId)")
-            } else{
-                println("fail")
-                println(error)
-            }
-        }
-        
-        var query = PFQuery(className: "Products")
-        query.getObjectInBackgroundWithId("L21LmAIEjc", block: { ( object: PFObject?, error: NSError?) -> Void in
-            if error != nil{
-                println(error)
-            } else if let product = object {
-                
-                product["description"] = "Rocky Road"
-                product["price"] = "2.99"
-                
-                product.saveInBackground()
-                
-                //println(object!.objectForKey("description"))
-            }
-        })*/
         
     }
 
