@@ -86,7 +86,7 @@ class ViewController: UIViewController {
                         self.performSegueWithIdentifier("login", sender: self)
                         
                     } else {
-                        if let errorString = error.userInfo?["error"] as? String {
+                        if let errorString = error!.userInfo?["error"] as? String {
                             errorMessage = errorString
                         }
                         
@@ -108,7 +108,7 @@ class ViewController: UIViewController {
                         
                     } else {
                         
-                        if let errorString = error.userInfo?["error"] as? String {
+                        if let errorString = error!.userInfo?["error"] as? String {
                             errorMessage = errorString
                         }
                         
