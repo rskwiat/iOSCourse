@@ -67,6 +67,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                     
                     if error == nil {
                         //Sign up success
+                        self.performSegueWithIdentifier("login", sender: self)
+
+                        
                     } else {
                         if let errorString = error!.userInfo?["error"] as? String {
                             errorMessage = errorString
@@ -85,6 +88,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                     
                     if user != nil {
                         //logged in
+                        self.performSegueWithIdentifier("login", sender: self)
+                        
                     } else {
                         if let errorString = error!.userInfo?["error"] as? String {
                             errorMessage = errorString
@@ -219,6 +224,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
         */
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if PFUser.currentUser() != nil{
+            self.performSegueWithIdentifier("login", sender: self)
+        }
     }
 
     override func didReceiveMemoryWarning() {

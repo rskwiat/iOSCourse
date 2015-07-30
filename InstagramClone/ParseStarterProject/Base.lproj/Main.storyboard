@@ -117,10 +117,54 @@
                         <outlet property="registeredText" destination="jdG-ao-WsY" id="jeP-4a-E6g"/>
                         <outlet property="signUpText" destination="2sP-Vt-YkI" id="Fq7-WM-9BR"/>
                         <outlet property="username" destination="jaO-3S-4tA" id="p8z-bN-edZ"/>
+                        <segue destination="2cW-Xz-y1q" kind="show" identifier="login" id="xOn-EB-Jg7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--User List-->
+        <scene sceneID="DqG-WV-QYm">
+            <objects>
+                <tableViewController id="Er4-B1-NaU" customClass="TableViewController" customModule="ParseStarterProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="YYm-gq-yEv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="rk0-nT-z6r">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rk0-nT-z6r" id="YbU-8d-nrU">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Er4-B1-NaU" id="VeS-1g-QkR"/>
+                            <outlet property="delegate" destination="Er4-B1-NaU" id="xOO-YP-Eyr"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="User List" id="9Bm-6A-WFO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Qc-hc-DgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1668.5" y="364.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yxi-SQ-jDf">
+            <objects>
+                <navigationController id="2cW-Xz-y1q" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yg5-JE-7PP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Er4-B1-NaU" kind="relationship" relationship="rootViewController" id="NxR-UK-9bD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="glB-qX-sog" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1152.5" y="364.5"/>
         </scene>
     </scenes>
 </document>
