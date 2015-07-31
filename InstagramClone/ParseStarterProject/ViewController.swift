@@ -86,11 +86,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                     self.activityIndicator.stopAnimating()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     
+                    println(user)
+                    
                     if user != nil {
                         //logged in
                         self.performSegueWithIdentifier("login", sender: self)
                         
                     } else {
+                        
+                        
                         if let errorString = error!.userInfo?["error"] as? String {
                             errorMessage = errorString
                             self.displayAlert("Failed Login", message: errorMessage)
@@ -227,7 +231,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     override func viewDidAppear(animated: Bool) {
-        if PFUser.currentUser() != nil{
+        if PFUser.currentUser()?.objectId != nil{
             self.performSegueWithIdentifier("login", sender: self)
         }
     }

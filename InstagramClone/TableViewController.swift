@@ -1,4 +1,4 @@
-//
+ //
 //  TableViewController.swift
 //  ParseStarterProject
 //
@@ -21,64 +21,63 @@ class TableViewController: UITableViewController {
         
         var query = PFUser.query()
         
-        query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-            
-            if let users = objects {
-                
-                self.usernames.removeAll(keepCapacity: true)
-                self.userids.removeAll(keepCapacity: true)
-                self.isFollowing.removeAll(keepCapacity: true)
-                
-                for object in users {
+            query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+//                println(PFUser())
+
+                if let users = objects {
                     
-                    if let user = object as? PFUser {
+                    self.usernames.removeAll(keepCapacity: true)
+                    self.userids.removeAll(keepCapacity: true)
+                    self.isFollowing.removeAll(keepCapacity: true)
+                    
+                    for object in users {
                         
-                        if user.objectId! != PFUser.currentUser()?.objectId {
-                            self.usernames.append(user.username!)
-                            self.userids.append(user.objectId!)
+                        if let user = object as? PFUser {
                             
-                            var query = PFQuery(className: "followers")
-                            query.whereKey("follower", equalTo: PFUser.currentUser()!.objectId!)
-                            query.whereKey("following", equalTo: user.objectId!)
-                            query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                            if user.objectId! != PFUser.currentUser()?.objectId {
+                                self.usernames.append(user.username!)
+                                self.userids.append(user.objectId!)
                                 
-                                if let objects = objects {
+                                var query = PFQuery(className: "followers")
+                                query.whereKey("follower", equalTo: PFUser.currentUser()!.objectId!)
+                                query.whereKey("following", equalTo: user.objectId!)
+                                
+                                query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
                                     
-                                    if objects.count > 0{
-                                        self.isFollowing[user.objectId!] = true
+                                    if let objects = objects {
+                                        
+                                        if objects.count > 0{
+                                            self.isFollowing[user.objectId!] = true
+                                        } else {
+                                            self.isFollowing[user.objectId!] = false
+                                        }
+                                        
+                                        
                                     } else {
+                                        
                                         self.isFollowing[user.objectId!] = false
+                                        
                                     }
                                     
+                                    if self.isFollowing.count == self.usernames.count {
+                                        self.tableView.reloadData()
+                                        self.refresher.endRefreshing()
+                                        
+                                    }
                                     
-                                } else {
-                                    
-                                    self.isFollowing[user.objectId!] = false
-                                    
-                                }
+                                })
                                 
-                                if self.isFollowing.count == self.usernames.count {
-                                    self.tableView.reloadData()
-                                    self.refresher.endRefreshing()
-
-                                }
-                                
-                            })
+                            }
                             
                         }
-                        
                     }
+                    
                 }
                 
-            }
-            
-            
-            
-        })
-        
-        
+            })
         
         self.refresher.endRefreshing()
+        
         
     }
     
