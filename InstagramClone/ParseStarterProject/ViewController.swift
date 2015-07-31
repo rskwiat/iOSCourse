@@ -86,7 +86,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                     self.activityIndicator.stopAnimating()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     
-                    println(user)
+//                    println(user)
                     
                     if user != nil {
                         //logged in

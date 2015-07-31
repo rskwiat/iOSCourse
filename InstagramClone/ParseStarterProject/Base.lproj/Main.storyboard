@@ -122,46 +122,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="710.5" y="392.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Your Feed-->
         <scene sceneID="keG-VM-wvN">
             <objects>
-                <tableViewController id="ev8-rn-4BQ" sceneMemberID="viewController">
+                <tableViewController title="Your Feed" id="ev8-rn-4BQ" customClass="FeedTableViewController" customModule="ParseStarterProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="401" sectionHeaderHeight="22" sectionFooterHeight="22" id="atI-LV-WcE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="401" id="y3w-Ju-NFY">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="401" id="y3w-Ju-NFY" customClass="cell" customModule="ParseStarterProject" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y3w-Ju-NFY" id="Hjp-6m-dee">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwP-KD-xTb">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwP-KD-xTb">
                                             <rect key="frame" x="30" y="8" width="315" height="315"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdU-4Z-tG3">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdU-4Z-tG3">
                                             <rect key="frame" x="8" y="328" width="359" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNj-tt-33g">
-                                            <rect key="frame" x="8" y="349" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNj-tt-33g">
+                                            <rect key="frame" x="8" y="349" width="359" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="zwP-KD-xTb" secondAttribute="trailing" constant="22" id="ILa-5n-1jJ"/>
-                                        <constraint firstItem="zwP-KD-xTb" firstAttribute="leading" secondItem="Hjp-6m-dee" secondAttribute="leadingMargin" constant="22" id="e7M-Hd-jxy"/>
-                                        <constraint firstItem="WdU-4Z-tG3" firstAttribute="trailing" secondItem="Hjp-6m-dee" secondAttribute="trailingMargin" id="fgR-kM-fB6"/>
-                                        <constraint firstItem="WdU-4Z-tG3" firstAttribute="top" secondItem="zwP-KD-xTb" secondAttribute="bottom" constant="5" id="gDy-kE-ypC"/>
-                                        <constraint firstItem="WdU-4Z-tG3" firstAttribute="leading" secondItem="Hjp-6m-dee" secondAttribute="leadingMargin" id="nUZ-uJ-u0d"/>
-                                        <constraint firstItem="zwP-KD-xTb" firstAttribute="top" secondItem="Hjp-6m-dee" secondAttribute="topMargin" id="tQM-lG-Tob"/>
-                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="message" destination="bNj-tt-33g" id="WaJ-bf-g6P"/>
+                                    <outlet property="postedImage" destination="zwP-KD-xTb" id="1aW-vX-qVh"/>
+                                    <outlet property="username" destination="WdU-4Z-tG3" id="kQ1-m7-sjC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -173,7 +171,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAq-kq-HAD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1670.5" y="-402.5"/>
+            <point key="canvasLocation" x="2481.5" y="-14.5"/>
         </scene>
         <!--User List-->
         <scene sceneID="DqG-WV-QYm">
@@ -211,7 +209,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Qc-hc-DgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1668.5" y="364.5"/>
+            <point key="canvasLocation" x="1684.5" y="392.5"/>
         </scene>
         <!--Post Image-->
         <scene sceneID="F9f-wa-Cgj">
@@ -287,7 +285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zq3-2R-UKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2168.5" y="364.5"/>
+            <point key="canvasLocation" x="2481.5" y="756.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yxi-SQ-jDf">
@@ -303,7 +301,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glB-qX-sog" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1152.5" y="364.5"/>
+            <point key="canvasLocation" x="1184.5" y="392.5"/>
         </scene>
     </scenes>
     <resources>
