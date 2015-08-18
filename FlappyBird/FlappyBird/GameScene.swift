@@ -34,7 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(movingObjects)
         self.addChild(labelHolder)
     
-        scoreLabel.fontName = "Impact"
+        scoreLabel.fontName = "Futura"
         scoreLabel.fontSize = 60
         scoreLabel.text = "0"
         scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.size.height - 70)
